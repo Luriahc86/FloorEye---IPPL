@@ -1,10 +1,12 @@
 import cv2
 import os
 import sys
+from ultralytics import YOLO
 
 from computer_vision.detector import detect_dirty_floor
 
 img_path = 'assets/test_kotor.png'
+
 if len(sys.argv) > 1:
     img_path = sys.argv[1]
 
@@ -18,8 +20,8 @@ if img is None:
     sys.exit(1)
 
 print('[INFO] Image loaded:', img_path)
-
 print('[INFO] Running detect_dirty_floor with debug=True and conf_threshold=0.2')
+
 detected = detect_dirty_floor(img, conf_threshold=0.2, debug=True)
 
 print('[RESULT] Dirty floor detected:', detected)
