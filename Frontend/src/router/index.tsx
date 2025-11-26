@@ -10,7 +10,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <MainLayout />,
     children: [
-      { path: "", element: <UploadPage /> }, // default route
+      { path: "", element: <UploadPage /> },
       { path: "upload", element: <UploadPage /> },
       { path: "live", element: <LiveCameraPage /> },
       { path: "history", element: <HistoryPage /> },

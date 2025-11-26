@@ -5,7 +5,7 @@ from ultralytics import YOLO
 
 from computer_vision.detector import detect_dirty_floor
 
-img_path = 'assets/test_kotor.png'
+img_path = 'assets/test_bersih.png'
 
 if len(sys.argv) > 1:
     img_path = sys.argv[1]

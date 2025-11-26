@@ -2,20 +2,20 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 # ================= COMPUTER VISION ==================
-from computer_vision.stream import get_rtsp_stream
+#from computer_vision.stream import get_rtsp_stream
 from computer_vision.detector import detect_dirty_floor
-from computer_vision.notifier import send_notification
+#from computer_vision.notifier import send_notification
 
 # =================== ROUTES =========================
-from routes.auth_route import router as auth_router
-from routes.staff_route import router as staff_router
-from routes.cctv_route import router as cctv_router
-from routes.laporan_route import router as laporan_router
-from routes.profile_route import router as profile_router
+#from routes.auth_route import router as auth_router
+#from routes.staff_route import router as staff_router
+#from routes.cctv_route import router as cctv_router
+#from routes.laporan_route import router as laporan_router
+#from routes.profile_route import router as profile_router
 
 # ================== DATABASE =========================
-from database import Base, engine  # NOTE: get_db pindah ke database.py
-from models import User, Staff, CCTV, Laporan
+#from database import Base, engine  # NOTE: get_db pindah ke database.py
+#from models import User, Staff, CCTV, Laporan
 
 # ======================================================
 import threading
@@ -29,7 +29,7 @@ import sys
 # ======================================================
 # AUTO CREATE TABLES
 # ======================================================
-Base.metadata.create_all(bind=engine)
+#Base.metadata.create_all(bind=engine)
 
 
 # ======================================================
@@ -138,12 +138,11 @@ app.add_middleware(
 
 
 # ROUTES
-app.include_router(auth_router)
-app.include_router(staff_router)
-app.include_router(cctv_router)
-app.include_router(laporan_router)
-app.include_router(profile_router)
-
+#app.include_router(auth_router)
+#app.include_router(staff_router)
+#app.include_router(cctv_router)
+#app.include_router(laporan_router)
+#app.include_router(profile_router)
 
 @app.get("/")
 def root():
