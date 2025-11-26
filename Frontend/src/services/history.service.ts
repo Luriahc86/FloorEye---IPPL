@@ -2,22 +2,23 @@ import axios from "axios";
 
 const API_BASE = "http://127.0.0.1:8000";
 
-export interface HistoryItem {
-  id: number;
-  source: "upload" | "camera";
-  is_dirty: boolean;
-  confidence?: number | null;
-  notes?: string | null;
-  created_at: string;
-}
+export async function detectFromImage(file: File, notes?: string) {
+  const formData = new FormData();
+  formData.append("file", file);
+  if (notes) formData.append("notes", notes);
 
-export async function getHistory(limit = 50, offset = 0): Promise<HistoryItem[]> {
-  const res = await axios.get(`${API_BASE}/history`, {
-    params: { limit, offset },
+  const res = await axios.post(`${API_BASE}/detect/image`, formData, {
+    headers: { "Content-Type": "multipart/form-data" },
   });
+
   return res.data;
 }
 
-export function getImageUrl(id: number) {
-  return `${API_BASE}/image/${id}`;
+export async function detectFromCameraFrame(imageBase64: string, notes?: string) {
+  const res = await axios.post(`${API_BASE}/detect/frame`, {
+    image_base64: imageBase64,
+    notes,
+  });
+
+  return res.data;
 }

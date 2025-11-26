@@ -1,6 +1,15 @@
 import { useEffect, useState } from "react";
-import { getHistory, HistoryItem as HistoryType } from "../services/history.service";
+import axios from "axios";
 import HistoryItem from "../components/HistoryItem";
+
+interface HistoryType {
+  id: number;
+  source: string;
+  is_dirty: boolean;
+  confidence?: number | null;
+  notes?: string | null;
+  created_at: string;
+}
 
 export default function HistoryPage() {
   const [history, setHistory] = useState<HistoryType[]>([]);
@@ -12,8 +21,8 @@ export default function HistoryPage() {
 
   const loadHistory = async () => {
     setLoading(true);
-    const data = await getHistory();
-    setHistory(data);
+    const res = await axios.get("http://127.0.0.1:8000/history");
+    setHistory(res.data);
     setLoading(false);
   };
 

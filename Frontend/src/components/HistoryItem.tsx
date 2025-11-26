@@ -1,14 +1,19 @@
-import { HistoryItem as HistoryType, getImageUrl } from "../services/history.service";
-
 interface Props {
-  item: HistoryType;
+  item: {
+    id: number;
+    source: string;
+    is_dirty: boolean;
+    confidence?: number | null;
+    notes?: string | null;
+    created_at: string;
+  };
 }
 
 export default function HistoryItem({ item }: Props) {
   return (
     <div className="p-4 bg-white shadow rounded-lg flex gap-4">
       <img
-        src={getImageUrl(item.id)}
+        src={`http://127.0.0.1:8000/image/${item.id}`}
         alt="History"
         className="w-32 h-32 object-cover rounded"
       />
